@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_find_wheels_icon"
+        android:icon="@drawable/search_icon"
+        android:orderInCategory="100"
+        android:title="@string/menu_find_wheels"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_cart_icon"
+        android:icon="@drawable/cart_icon"
+        android:orderInCategory="100"
+        android:title="@string/menu_cart"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_find_bolt_pattern"
+        android:title="@string/menu_find_bolt_pattern"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_help"
+        android:title="@string/menu_help"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_settings"
+        android:title="@string/menu_settings"
+        app:showAsAction="never" />
+
+</menu>

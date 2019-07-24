@@ -9,12 +9,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
     }
 
     /**
@@ -43,19 +43,19 @@ public class MainActivity extends AppCompatActivity {
         switch( item.getItemId() ) {
 
             case R.id.menu_find_wheels_icon:
-                startActivity( new Intent( MainActivity.this, WheelsActivity.class ) );
+                startActivity( new Intent( SettingsActivity.this, WheelsActivity.class ) );
                 break;
             case R.id.menu_find_bolt_pattern:
-                startActivity( new Intent( MainActivity.this, BoltPatternActivity.class ) );
+                startActivity( new Intent( SettingsActivity.this, BoltPatternActivity.class ) );
                 break;
             case R.id.menu_cart_icon:
-                startActivity( new Intent( MainActivity.this, CartActivity.class ) );
+                startActivity( new Intent( SettingsActivity.this, CartActivity.class ) );
                 break;
             case R.id.menu_help:
-                startActivity( new Intent( MainActivity.this, HelpActivity.class ) );
+                startActivity( new Intent( SettingsActivity.this, HelpActivity.class ) );
                 break;
             case R.id.menu_settings:
-                startActivity( new Intent( MainActivity.this, SettingsActivity.class ) );
+                // Do nothing. On this activity now.
                 break;
             default:
                 Log.e("Activity", "Default case accessed in onOptionsItemSelected()");
