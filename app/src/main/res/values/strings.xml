@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Wheels</string>
+
+    <!-- Main Screen -->
+    <string name="wheels_logo">Wheels Logo</string>
+    <string name="search_button">Find Wheels</string>
+    <string name="xxr_banner">XXR Banner</string>
+    <string name="bolt_pattern_button">Find Bolt Pattern</string>
 </resources>
