@@ -13,4 +13,41 @@
     <string name="menu_find_bolt_pattern">Find Bolt Pattern</string>
     <string name="menu_help">Help</string>
     <string name="menu_settings">Settings</string>
+
+    <!-- Help Activity -->
+    <string name="help_logo">Help Logo</string>
+    <string name="help_content_main"><b>How to use the search?</b>\nSelect the vehicle that you want
+        to find wheels and tires for\n\n
+    </string>
+
+    <string name="help_content_other"><b>Tire Type</b>\nThe letter \"P\" at the beginning of the \"Tire Size\"
+        tells us the tire is a P-Metric tire, referring to tires made to certain standards within the
+        United States, intended for Passenger vehicles.\n\nIf a tire size has no letters at the
+        beginning, this indicates a Euro metric tire. P-Metric and Euro-Metric tires may have
+        different load capacities.\n\nThe letters \"LT,\" either at the beginning or at the end of the
+        tire size indicate the tire was designed for light trucks. Vehicle manufacturers equip some
+        light trucks with \"LT\" type tires. These tires generally require higher inflation pressures
+        than passenger tires.\n\nConsult your owner\'s manual or tire placard for the recommended
+        tire size and inflation pressure for your vehicle.\n\n<b>Tire Width</b>\nIs the width of the
+        tire measured in millimeters from sidewall to sidewall. The first three-digit number in the
+        tire size refers to the tire width. For instance, in a size P215/65 R15 tire, the width is
+        215 millimeters.\n\n<b>Aspect Ratio</b>\nIs the ratio of the height of the tire\'s cross-section
+        to its width. The two-digit number after the slash mark in a tire size is the aspect ratio. For
+        example, in a size P215/65 R15 tire, the 65 means that the height is equal to 65% of the
+        tire\'s width. The bigger the aspect ratio, the bigger the tire\'s sidewall will be.\n\n<b>Construction</b>\n
+        The letter \"R\" in a tire size stands for Radial, which means the layers run radially
+        across the tire.\n\n<b>Wheel Diameter</b>\nIs the size of the wheel measured from one end to
+        the other. It tells us the size of the wheel that the tire is intended to fit. A size P215/65 R15 tire is made
+        for a wheel with a 15\" diameter.\n\n<b>Load Index</b>\nIndicates the maximum load that the
+        tire can support when properly inflated. You\'ll also find the maximum load on the tire sidewall,
+        in both pounds and kilograms.\n\n<b>Speed Rating</b>\nTells you the maximum speed capability
+        of a tire. Often speed ratings are matched to the top speed capability of the vehicle. For
+        example, a tire with an H-speed rating has a maximum speed capability of 130 mph or 210 km/h.
+        Goodyear does NOT recommend exceeding legally posted speed limits.\n\n<b>DOT Symbol</b>\nThe letters
+        \"DOT\" on the sidewall indicate that the tire complies with all applicable Federal Motor
+        Vehicle Safety Standards in the United States.\n\nTo view more information,
+        visit:\n<b><a href="https://www.goodyearautoservice.com/en-US/tire-basics/tire-size">goodyearautoservice.com</a></b>\n\n
+    </string>
+
+
 </resources>
