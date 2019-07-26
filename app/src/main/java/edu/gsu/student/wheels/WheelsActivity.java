@@ -62,8 +62,6 @@ public class WheelsActivity extends AppCompatActivity {
             case R.id.menu_settings:
                 startActivity( new Intent( WheelsActivity.this, SettingsActivity.class ) );
                 break;
-            default:
-                Log.e("Activity", "Default case accessed in onOptionsItemSelected()");
         }
 
         return super.onOptionsItemSelected(item);

@@ -57,8 +57,6 @@ public class BoltPatternActivity extends AppCompatActivity {
             case R.id.menu_settings:
                 startActivity( new Intent( BoltPatternActivity.this, SettingsActivity.class ) );
                 break;
-            default:
-                Log.e("Activity", "Default case accessed in onOptionsItemSelected()");
         }
 
         return super.onOptionsItemSelected(item);
