@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
                 // Get the JSON data in the background
                 // Get rid of spaces. PHP will remove the underscores and replace them with spaces again
                 FetchJsonData process = new FetchJsonData();
-                process.execute( charSequence.toString().replace(" ", "_"), "vehicle" );
+                process.execute( charSequence.toString().replace(" ", "_"), "vehicle", "settings" );
 
                 // Parse JSON String
                 try {
