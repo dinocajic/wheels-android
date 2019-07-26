@@ -49,5 +49,11 @@
         visit:\n<b><a href="https://www.goodyearautoservice.com/en-US/tire-basics/tire-size">goodyearautoservice.com</a></b>\n\n
     </string>
 
+    <!-- Search -->
+    <string name="enter_vehicle_hint">2019 Subaru WRX STi</string>
+
+    <!-- Settings -->
+    <string name="settings_name">Name</string>
+    <string name="settings_save_button">Save Preferences</string>
 
 </resources>

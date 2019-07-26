@@ -14,27 +14,34 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".WheelsActivity"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".WheelsActivity"
             android:label="Wheels"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".BoltPatternActivity"
+        <activity
+            android:name=".BoltPatternActivity"
             android:label="Bolt Pattern"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CartActivity"
+        <activity
+            android:name=".CartActivity"
             android:label="Cart"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".HelpActivity"
+        <activity
+            android:name=".HelpActivity"
             android:label="Help"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".SettingsActivity"
+        <activity
+            android:name=".SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
             android:label="Wheel Store">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
