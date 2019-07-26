@@ -64,7 +64,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/main_bolt_pattern_button"
+                android:id="@+id/main_vehicle_details_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

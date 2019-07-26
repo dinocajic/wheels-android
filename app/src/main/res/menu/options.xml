@@ -13,7 +13,7 @@
         android:title="@string/menu_find_wheels"
         app:showAsAction="never" />
 
-    <item android:id="@+id/menu_find_bolt_pattern"
+    <item android:id="@+id/menu_vehicle_details"
         android:title="@string/menu_find_bolt_pattern"
         app:showAsAction="never" />
 

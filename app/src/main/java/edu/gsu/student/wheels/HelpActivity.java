@@ -44,7 +44,7 @@ public class HelpActivity extends AppCompatActivity {
             case R.id.menu_find_wheels_icon:
                 startActivity( new Intent( HelpActivity.this, WheelsActivity.class ) );
                 break;
-            case R.id.menu_find_bolt_pattern:
+            case R.id.menu_vehicle_details:
                 startActivity( new Intent( HelpActivity.this, VehicleDetailsActivity.class ) );
                 break;
             case R.id.menu_cart_icon:

@@ -44,7 +44,7 @@ public class WheelsActivity extends AppCompatActivity {
             case R.id.menu_find_wheels_icon:
                 // Do nothing. On this activity now.
                 break;
-            case R.id.menu_find_bolt_pattern:
+            case R.id.menu_vehicle_details:
                 startActivity( new Intent( WheelsActivity.this, VehicleDetailsActivity.class ) );
                 break;
             case R.id.menu_cart_icon:
