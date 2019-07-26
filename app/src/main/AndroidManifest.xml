@@ -23,10 +23,9 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BoltPatternActivity"
-            android:label="Bolt Pattern"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:name=".VehicleDetailsActivity"
+            android:label="Vehicle Details"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CartActivity"
             android:label="Cart"

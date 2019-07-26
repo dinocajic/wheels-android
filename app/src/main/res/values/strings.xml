@@ -5,12 +5,12 @@
     <string name="wheels_logo">Wheels Logo</string>
     <string name="search_button">Find Wheels</string>
     <string name="xxr_banner">XXR Banner</string>
-    <string name="bolt_pattern_button">Find Bolt Pattern</string>
+    <string name="bolt_pattern_button">Find Vehicle Details</string>
 
     <!-- App Menu -->
     <string name="menu_find_wheels">Find Wheels</string>
     <string name="menu_cart">Cart</string>
-    <string name="menu_find_bolt_pattern">Find Bolt Pattern</string>
+    <string name="menu_find_bolt_pattern">Find Vehicle Details</string>
     <string name="menu_help">Help</string>
     <string name="menu_settings">Settings</string>
 
@@ -55,5 +55,7 @@
     <!-- Settings -->
     <string name="settings_name">Name</string>
     <string name="settings_save_button">Save Preferences</string>
+
+    <string name="search">Search</string>
 
 </resources>

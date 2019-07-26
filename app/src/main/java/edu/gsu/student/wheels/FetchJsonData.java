@@ -16,6 +16,8 @@ public class FetchJsonData extends AsyncTask<String, Void, Void> {
     // The retrieved JSON file
     private StringBuilder data = new StringBuilder();
 
+    private String class_name = "";
+
     /**
      * Background thread
      *
@@ -25,7 +27,7 @@ public class FetchJsonData extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... strings) {
 
-        Log.e("Data", strings[1]);
+        this.class_name = strings[2];
 
         String url_string = "";
 
@@ -79,6 +81,17 @@ public class FetchJsonData extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        SettingsActivity.data = this.data.toString();
+
+        switch( this.class_name ) {
+            case "settings":
+                SettingsActivity.data = this.data.toString();
+                break;
+            case "bolt_pattern_dropdown":
+                VehicleDetailsActivity.data = this.data.toString();
+                break;
+            case "bolt_pattern_details":
+                VehicleDetailsActivity.details = this.data.toString();
+                break;
+        }
     }
 }

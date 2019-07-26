@@ -2,17 +2,11 @@ package edu.gsu.student.wheels;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 public class WheelsActivity extends AppCompatActivity {
 
@@ -51,7 +45,7 @@ public class WheelsActivity extends AppCompatActivity {
                 // Do nothing. On this activity now.
                 break;
             case R.id.menu_find_bolt_pattern:
-                startActivity( new Intent( WheelsActivity.this, BoltPatternActivity.class ) );
+                startActivity( new Intent( WheelsActivity.this, VehicleDetailsActivity.class ) );
                 break;
             case R.id.menu_cart_icon:
                 startActivity( new Intent( WheelsActivity.this, CartActivity.class ) );

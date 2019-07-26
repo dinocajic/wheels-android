@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -46,7 +45,7 @@ public class HelpActivity extends AppCompatActivity {
                 startActivity( new Intent( HelpActivity.this, WheelsActivity.class ) );
                 break;
             case R.id.menu_find_bolt_pattern:
-                startActivity( new Intent( HelpActivity.this, BoltPatternActivity.class ) );
+                startActivity( new Intent( HelpActivity.this, VehicleDetailsActivity.class ) );
                 break;
             case R.id.menu_cart_icon:
                 startActivity( new Intent( HelpActivity.this, CartActivity.class ) );

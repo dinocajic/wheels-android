@@ -3,6 +3,7 @@ package edu.gsu.student.wheels;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,60 +18,49 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SettingsActivity extends AppCompatActivity {
+public class VehicleDetailsActivity extends AppCompatActivity {
 
-    EditText name;
-    AutoCompleteTextView vehicle;
-    Button save_button;
-
-    SharedPreferences prefs;
+    AutoCompleteTextView search_vehicle;
+    Button search;
+    TextView results;
 
     //public static ArrayList<String> vehicle_data = new ArrayList<>();
     String[] vehicle_data = new String[3];
 
     // Data from JSON
-    public static String data = "";
-
-    Context cntx;
+    public static String data    = "";
+    public static String details = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_bolt_pattern);
 
-        vehicle_data[0] = "Enter Vehicle";
-
-        cntx = this;
-        this.init(this);
+        this.init( this );
     }
 
-    private void init(final Context context ) {
-        this.name        = findViewById( R.id.settings_name );
-        this.vehicle     = findViewById( R.id.settings_search_vehicle );
-        this.save_button = findViewById( R.id.settings_save_button );
+    private void init( final Context context ) {
+        this.search_vehicle = findViewById( R.id.bolt_pattern_search_vehicle );
+        this.search         = findViewById( R.id.bolt_pattern_search_button );
+        this.results        = findViewById( R.id.bolt_pattern_results );
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if ( prefs.contains("user_name") ) {
-            this.name.setText( prefs.getString("user_name", "user_name") );
-        }
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if ( prefs.contains("user_vehicle") ) {
-            this.vehicle.setText( prefs.getString("user_vehicle", "user_vehicle") );
+            this.search_vehicle.setText( prefs.getString("user_vehicle", "user_vehicle") );
         }
 
         // Autofill feature
         ArrayAdapter<String> adapter = new ArrayAdapter<String>( context, android.R.layout.simple_list_item_1, vehicle_data );
-        this.vehicle.setAdapter( adapter );
+        this.search_vehicle.setAdapter( adapter );
 
-        this.vehicle.addTextChangedListener(new TextWatcher() {
+        this.search_vehicle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -87,7 +77,7 @@ public class SettingsActivity extends AppCompatActivity {
                 // Get the JSON data in the background
                 // Get rid of spaces. PHP will remove the underscores and replace them with spaces again
                 FetchJsonData process = new FetchJsonData();
-                process.execute( charSequence.toString().replace(" ", "_"), "vehicle", "settings" );
+                process.execute( charSequence.toString().replace(" ", "_"), "vehicle", "bolt_pattern_dropdown" );
 
                 // Parse JSON String
                 try {
@@ -103,8 +93,8 @@ public class SettingsActivity extends AppCompatActivity {
                         // Needed so that the autocompletetextview can be refreshed on runtime
                         ArrayAdapter<String> adp = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, vehicle_data);
                         adp.setDropDownViewResource( android.R.layout.simple_list_item_1 );
-                        vehicle.setThreshold(1);
-                        vehicle.setAdapter(adp);
+                        search_vehicle.setThreshold(1);
+                        search_vehicle.setAdapter(adp);
                     }
 
                 } catch (JSONException e) {
@@ -113,21 +103,35 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        this.save_button.setOnClickListener(new View.OnClickListener() {
+
+        this.search.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = prefs.edit();
+                // Get the JSON data in the background
+                // Get rid of spaces. PHP will remove the underscores and replace them with spaces again
+                FetchJsonData process = new FetchJsonData();
+                process.execute( search_vehicle.getText().toString().replace(" ", "_"), "vehicle", "bolt_pattern_details" );
 
-                editor.putString("user_name",    name.getText().toString() );
-                editor.putString("user_vehicle", vehicle.getText().toString() );
+                // Parse JSON String
+                try {
+                    JSONObject root     = new JSONObject( details );
+                    JSONArray vehicles  = root.getJSONArray("vehicles");
 
-                editor.apply();
+                    JSONObject car = vehicles.getJSONObject( 0 );
+
+                    results.setText(
+                            "Bolt Pattern: " + car.getString("bolts") + "x" + car.getString("bolt_pattern") + "\n" +
+                                    "Offset Range: " + car.getString("offset") + "\n" +
+                                    "Hub: " + car.getString("hub") + "\n\n" +
+                                    "Stock Tire Size: " + car.getString("tire_size")
+                    );
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 closeKeyboard();
-
-                Toast.makeText( getApplicationContext(),
-                        "Preferences Saved",
-                        Toast.LENGTH_SHORT ).show();
             }
         });
     }
@@ -158,19 +162,19 @@ public class SettingsActivity extends AppCompatActivity {
         switch( item.getItemId() ) {
 
             case R.id.menu_find_wheels_icon:
-                startActivity( new Intent( SettingsActivity.this, WheelsActivity.class ) );
+                startActivity( new Intent( VehicleDetailsActivity.this, WheelsActivity.class ) );
                 break;
             case R.id.menu_find_bolt_pattern:
-                startActivity( new Intent( SettingsActivity.this, VehicleDetailsActivity.class ) );
+                // Do nothing. On this activity now.
                 break;
             case R.id.menu_cart_icon:
-                startActivity( new Intent( SettingsActivity.this, CartActivity.class ) );
+                startActivity( new Intent( VehicleDetailsActivity.this, CartActivity.class ) );
                 break;
             case R.id.menu_help:
-                startActivity( new Intent( SettingsActivity.this, HelpActivity.class ) );
+                startActivity( new Intent( VehicleDetailsActivity.this, HelpActivity.class ) );
                 break;
             case R.id.menu_settings:
-                // Do nothing. On this activity now.
+                startActivity( new Intent( VehicleDetailsActivity.this, SettingsActivity.class ) );
                 break;
         }
 
@@ -183,5 +187,18 @@ public class SettingsActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString( "results", results.getText().toString() );
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        results.setText( savedInstanceState.getString("results") );
     }
 }
