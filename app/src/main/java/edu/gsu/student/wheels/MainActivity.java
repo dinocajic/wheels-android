@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        Globals.db = new DatabaseHelper(this);
+
         this.vehicle_details = findViewById( R.id.main_vehicle_details_button );
         this.find_wheels     = findViewById( R.id.main_search_button );
 
