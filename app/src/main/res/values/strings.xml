@@ -58,4 +58,7 @@
 
     <string name="search">Search</string>
 
+    <!-- Wheels -->
+    <string name="search_by_size">Search By Size: i.e. 20 5x4.5</string>
+
 </resources>

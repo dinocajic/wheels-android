@@ -53,7 +53,7 @@
                 app:srcCompat="@drawable/xxr_banner_land" />
 
             <Button
-                android:id="@+id/main_bolt_pattern_button"
+                android:id="@+id/main_vehicle_details_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"

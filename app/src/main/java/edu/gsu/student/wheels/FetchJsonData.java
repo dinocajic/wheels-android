@@ -92,6 +92,9 @@ public class FetchJsonData extends AsyncTask<String, Void, Void> {
             case "bolt_pattern_details":
                 VehicleDetailsActivity.details = this.data.toString();
                 break;
+            case "wheels_dropdown":
+                WheelsActivity.data = this.data.toString();
+                break;
         }
     }
 }

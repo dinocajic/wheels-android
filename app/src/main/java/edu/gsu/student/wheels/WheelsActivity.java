@@ -2,18 +2,117 @@ package edu.gsu.student.wheels;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class WheelsActivity extends AppCompatActivity {
+
+    AutoCompleteTextView search;
+    public static String data = "";
+    String[] dropdown = new String[3];
+
+    private ArrayList<Wheel> wheels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wheels);
+
+        this.init( this );
+    }
+
+    private void init(final Context context) {
+        this.search = findViewById( R.id.wheels_search_by_size );
+        dropdown[0] = "Enter search: i.e. 20 5x115";
+
+        // Autofill feature
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>( context, android.R.layout.simple_list_item_1, dropdown );
+        this.search.setAdapter( adapter );
+
+        this.search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                wheels.clear();
+
+                if ( charSequence.length() < 8 ) {
+                    return;
+                }
+
+                // Get the JSON data in the background
+                // Get rid of spaces. PHP will remove the underscores and replace them with spaces again
+                FetchJsonData process = new FetchJsonData();
+                process.execute( charSequence.toString().replace(" ", "_"), "wheels", "wheels_dropdown" );
+
+                // Parse JSON String
+                try {
+                    JSONObject root     = new JSONObject(data);
+                    JSONArray vehicles  = root.getJSONArray("wheels");
+
+                    for ( int k = 0; k < vehicles.length(); k++ ) {
+
+                        JSONObject wh = vehicles.getJSONObject( k );
+
+                        Wheel wheel = new Wheel();
+                        wheel.setBolt_pattern( wh.getString("bolt_pattern") );
+                        wheel.setBolts(        wh.getString("bolts") );
+                        wheel.setBrand(        wh.getString("brand") );
+                        wheel.setImage(        wh.getString("image") );
+                        wheel.setItem_number(  wh.getString("item_number") );
+                        wheel.setModel(        wh.getString("model") );
+                        wheel.setPrice(        wh.getString("price") );
+                        wheel.setDiameter(     wh.getString("diameter") );
+                        wheel.setWidth(        wh.getString("width") );
+                        wheel.setOffset(       wh.getString("offset") );
+
+                        wheels.add( wheel );
+
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                closeKeyboard();
+
+                initRecyclerView();
+            }
+        });
+    }
+
+    private void initRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        WheelRecyclerViewAdapter adapter = new WheelRecyclerViewAdapter(this, wheels);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -59,5 +158,13 @@ public class WheelsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
