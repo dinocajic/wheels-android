@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ public class VehicleDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bolt_pattern);
+        setContentView(R.layout.activity_vehicle_details);
 
         this.init( this );
     }
@@ -115,6 +115,10 @@ public class VehicleDetailsActivity extends AppCompatActivity {
 
                 // Parse JSON String
                 try {
+                    if ( details.equals("") ) {
+                        return;
+                    }
+
                     JSONObject root     = new JSONObject( details );
                     JSONArray vehicles  = root.getJSONArray("vehicles");
 
@@ -126,7 +130,6 @@ public class VehicleDetailsActivity extends AppCompatActivity {
                                     "Hub: " + car.getString("hub") + "\n\n" +
                                     "Stock Tire Size: " + car.getString("tire_size")
                     );
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
