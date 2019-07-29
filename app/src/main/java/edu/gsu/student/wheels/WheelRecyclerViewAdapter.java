@@ -45,7 +45,7 @@ public class WheelRecyclerViewAdapter extends RecyclerView.Adapter<WheelRecycler
                 );
         holder.price.setText( "$" + wheels.get(position).getPrice() + " Add to Cart" );
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.price.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Add toast
