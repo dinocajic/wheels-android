@@ -1,8 +1,6 @@
 package edu.gsu.student.wheels;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,15 +45,13 @@ public class WheelRecyclerViewAdapter extends RecyclerView.Adapter<WheelRecycler
                 );
         holder.price.setText( "$" + wheels.get(position).getPrice() + " Add to Cart" );
 
-        // Opens the modify page for the particular item that's passed
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, EditActivity.class);
-//                intent.putExtra("part_number", tires.get(position).getPart_number());
-//                context.startActivity(intent);
-
-                Log.e("Clicked it", "Yup");
+                // Add toast
+                Toast.makeText( context.getApplicationContext(),
+                        "Item added to cart",
+                        Toast.LENGTH_SHORT ).show();
 
                 Globals.db.insert( wheels.get(position) );
             }
