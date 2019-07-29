@@ -2,18 +2,64 @@ package edu.gsu.student.wheels;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CartActivity extends AppCompatActivity {
+
+    private ArrayList<Wheel> wheels = new ArrayList<>();
+
+    public static TextView subtotal;
+    private Button payment_button;
+    public static TextView cart_text_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        this.init( this );
+    }
+
+    private void init( Context context ) {
+        cart_text_view = findViewById(R.id.cart_text_view);
+        Wheel[] wheels = Globals.db.get_cart_contents();
+
+        if ( wheels.length == 0 ) {
+            cart_text_view.setText(R.string.no_items_in_cart);
+            return;
+        }
+
+        this.wheels.addAll( Arrays.asList( wheels ) );
+        subtotal = findViewById( R.id.subtotal );
+
+        double total = 0;
+
+        for ( Wheel wheel : wheels ) {
+            total += Double.parseDouble( wheel.getPrice() ) * 4;
+        }
+
+        subtotal.setText( "Subtotal: $" + String.format("%.2f", total) + "");
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.cart_recycler_view);
+        CartRecyclerViewAdapter adapter = new CartRecyclerViewAdapter(this, wheels);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**

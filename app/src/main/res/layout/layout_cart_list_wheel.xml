@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/wheel_image"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:id="@+id/wheel_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/wheel_image"
+        android:textColor="#292929"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/wheel_part_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/wheel_image"
+        android:layout_below="@+id/wheel_description"
+        android:textColor="#292929"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/wheel_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wheel_part_number"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/wheel_image"
+        android:textColor="#292929"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/wheel_button"
+        android:layout_toEndOf="@+id/wheel_image"
+        android:layout_below="@+id/wheel_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

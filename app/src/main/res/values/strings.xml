@@ -61,4 +61,10 @@
     <!-- Wheels -->
     <string name="search_by_size">Search By Size: i.e. 20 5x4.5</string>
 
+    <!-- Cart -->
+    <string name="cart">Items in the Cart</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="payment_button">Proceed to Payment</string>
+    <string name="no_items_in_cart">No Items in Cart</string>
+
 </resources>

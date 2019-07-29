@@ -137,4 +137,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return queryCursor.getCount() != 0;
     }
+
+    public void delete(String part_number) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + CartTable.TABLE + " WHERE " + CartTable.COL_ITEM_NUMBER + " = '" + part_number + "';");
+    }
 }
